@@ -7,11 +7,20 @@ const Page = () => {
   const [mainTask,setMaintask]=useState([]);
   const [mode,setMode]=useState('light');
   const submitHandler=(e)=>{
-    setMaintask([...mainTask,{task,note}]);
-    e.preventDefault()
-    setTask("")
-    setNote("")
-    console.log(mainTask)
+    if (task!="" ) {
+      setMaintask([...mainTask,{task,note}]);
+      e.preventDefault()
+      setTask("")
+      setNote("")
+      console.log(mainTask)
+    }
+    else{
+      setMaintask([...mainTask]);
+      e.preventDefault()
+      setTask("")
+      setNote("")
+      console.log(mainTask)
+    }
   }
 
   const delHandle=(i)=>{
@@ -61,7 +70,7 @@ const Page = () => {
        <div>
        <i className="material-icons" onClick={()=>{
         editHand(i)
-      }} style={{ fontSize: '40px',marginTop:'-9px',marginLeft:'80px', color: 'grey',cursor:'pointer' }}>edit</i>
+      }} style={{ fontSize: '40px',marginTop:'9px',marginLeft:'80px', color: '#6CB4EE',cursor:'pointer' }}>edit</i>
 
 
       <i className="fa fa-trash-o" onClick={()=>{
@@ -81,13 +90,13 @@ const Page = () => {
       <h1 className={`font-bold text-4xl p-5  text-white text-center ${mode=='dark'? ' bg-slate-900':' bg-blue-500'} `}>
         My To-Do List
         
+      <i className="material-icons" onClick={darkM} style={{ fontSize: '40px', color: mode==='light'?'yellow':'white',marginTop:'3px',marginRight:'2px',float:'right',cursor:'pointer' }}>nights_stay</i>
       </h1>
-      <i className="material-icons" onClick={darkM} style={{ fontSize: '40px', color: mode==='light'?'black':'white',marginTop:'3px',marginRight:'2px',float:'right',cursor:'pointer' }}>nights_stay</i>
-      <div className="flex flex-col items-center mt-8 mb-2 md:flex-row md:justify-evenly md:ml-8">
-      <form className="flex flex-col items-center  justify-evenly md:flex-row" onSubmit={submitHandler}>
+      <div className="flex flex-col items-center mt-8 mb-2 sm:flex-row sm:justify-evenly sm:ml-8">
+      <form className="flex flex-col items-center  justify-evenly sm:flex-row" onSubmit={submitHandler}>
         <input
           type="text"
-          className={`text-xl font-semibold border-2 my-4 p-3 px-4  md:w-96 ${mode=='dark'? ' bg-slate-800  border-white text-white':' bg-white  border-zinc-700 text-black'}`}
+          className={`text-xl font-semibold border-2 my-4 p-3 px-4  sm:w-96 ${mode=='dark'? ' bg-slate-800  border-white text-white':' bg-white  border-zinc-700 text-black'}`}
           placeholder="Enter task"
           value={task}
           onChange={(e)=>{
@@ -96,7 +105,7 @@ const Page = () => {
         />
         <input
           type="text"
-          className={`text-xl font-semibold border-2 my-4 p-3 px-4  md:w-96 md:ml-10  ${mode=='dark'? ' bg-slate-800  border-white text-white':' bg-white  border-zinc-700 text-black'}`}
+          className={`text-xl font-semibold border-2 my-4 p-3 px-4  sm:w-96 sm:ml-10  ${mode=='dark'? ' bg-slate-800  border-white text-white':' bg-white  border-zinc-700 text-black'}`}
           placeholder="Enter a note"
           value={note}
           onChange={(e)=>{
@@ -104,17 +113,17 @@ const Page = () => {
           }}
         />
         <button
-          className={`my-6 px-4 py-3 md:w-32 rounded-sm font-semibold  focus:outline-green-600 md:ml-20 ${mode=='dark'? ' bg-slate-200  border-green-400 text-green-700 border-2':' bg-green-400  border-green-700 text-white'}`}>ADD TASK
+          className={`my-6 px-4 py-3 sm:w-32 rounded-sm font-semibold  focus:outline-green-600 sm:ml-20 ${mode=='dark'? ' bg-slate-200  border-green-400 text-green-700 border-2':' bg-green-400  border-green-700 text-white'}`}>ADD TASK
         </button>
       </form>
       <button onClick={delAll}
-          className={`my-6 px-4 py-3 md:w-32 rounded-sm font-semibold focus:outline-red-600 md:-ml-20  ${mode=='dark'? ' bg-slate-200  border-red-400 text-red-600 border-2':' bg-red-400  border-red-700 text-white'}`}>DELETE ALL 
+          className={`my-6 px-4 py-3 sm:w-32 rounded-sm font-semibold focus:outline-red-600 sm:-ml-20  ${mode=='dark'? ' bg-slate-200  border-red-400 text-red-600 border-2':' bg-red-400  border-red-700 text-white'}`}>DELETE ALL 
         </button>
         </div>
       <hr /><br />
       <h2 className={` flex flex-row justify-center font-semibold text-2xl ${mode=='dark'? ' text-white':' text-black'}`}>MY TASKS</h2>
       <div className="flex flex-row justify-center   mt-7 ">
-          <div className={`p-3 bg-slate-100 w-auto md:w-1/3 mb-5 ${mode === 'dark' ? 'text-white bg-slate-800' : ''}`}>
+          <div className={`p-3 bg-slate-100 w-auto sm:w-1/3 mb-5 ${mode === 'dark' ? 'text-white bg-slate-800' : ''}`}>
             <ul>{taskRender}</ul>
           </div>
       </div>
